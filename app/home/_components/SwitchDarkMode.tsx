@@ -1,4 +1,4 @@
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import MoonIconDark from "../../images/Moon_fill.svg";
 import MoonIcon from "../../images/Moon_fill_light.svg";

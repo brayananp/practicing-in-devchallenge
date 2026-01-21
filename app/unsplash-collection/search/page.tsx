@@ -7,7 +7,7 @@ import { Suspense, useEffect, useState } from "react";
 
 import useColumnsMasonry from "@/hooks/useColumnsMasonry";
 import { Photo } from "@/types/app-unsplash";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import InputSearch from "../components/InputSearch";
 

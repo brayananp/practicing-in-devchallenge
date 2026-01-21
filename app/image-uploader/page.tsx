@@ -1,5 +1,5 @@
 "use client";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 import ImageUploader from "./components/ImageUploader";
 import Navbar from "./components/Navbar";

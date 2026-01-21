@@ -3,7 +3,7 @@ import LogoGoogle from "../../images/google-testimonial.webp";
 import IconStarFill from "../../images/Star_fill.svg";
 import IconStarFillGray from "../../images/Star_fill_gray.svg";
 import Image, { type StaticImageData } from "next/image";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 
 type Props = {
   title: string;

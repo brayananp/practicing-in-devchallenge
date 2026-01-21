@@ -1,4 +1,4 @@
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { links } from "./Header";
 import LinkNavigation from "./LinkNavigation";
 import SwitchDarkMode from "./SwitchDarkMode";

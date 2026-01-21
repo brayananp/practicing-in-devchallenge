@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import ImageLogo from "../images/Word Scramblle.svg";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 export default function GuessTheWordGame() {
   const words = useMemo(
     () => [
@@ -147,7 +147,7 @@ export default function GuessTheWordGame() {
         </div>
         {/* Player Turn and Scores Display */}
         <div className="text-center my-4 text-[#F2F5F9]">
-          <p className="text-xl font-semibold">Player {currentPlayer}'s Turn</p>
+          <p className="text-xl font-semibold">Player {currentPlayer}&apos;s Turn</p>
           <div className="flex justify-around mt-2 text-lg">
             <p>Player 1 Score: {player1Score}</p>
             <p>Player 2 Score: {player2Score}</p>
