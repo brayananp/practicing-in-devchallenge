@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Collection } from "@/types/app-unsplash";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

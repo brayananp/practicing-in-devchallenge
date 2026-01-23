@@ -9,10 +9,12 @@ import {
   outfit,
   dmSans,
 } from "@/utils/typographies";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Practicing in dev challenge",
-  description: "",
+  title: "DevChallenges Portfolio | VJ",
+  description: "Una colección de desafíos de desarrollo web de devchallenges.io",
 };
 
 export default function RootLayout({
@@ -22,10 +24,16 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${sora.variable} ${lato.variable} ${poppins.variable} ${beVietnamPro.variable} ${inter.variable} ${outfit.variable} ${dmSans.variable}`}
+      lang="es"
+      className={`${sora.variable} ${lato.variable} ${poppins.variable} ${beVietnamPro.variable} ${inter.variable} ${outfit.variable} ${dmSans.variable} scroll-smooth`}
     >
-      <body className={poppins.className}>{children}</body>
+      <body className={`${poppins.className} min-h-screen flex flex-col`}>
+        <Header />
+        <div className="flex-grow">
+          {children}
+        </div>
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { createClient } from "@/utils/supebase/client";
 import { Editor } from "@monaco-editor/react";
 import { useParams, usePathname } from "next/navigation";

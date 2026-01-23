@@ -1,7 +1,7 @@
 "use client";
 import useColumnsMasonry from "@/hooks/useColumnsMasonry";
 import { Photo as PhotoType } from "@/types/app-unsplash";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { api } from "@/utils/unsplasn";
 import { useEffect, useState } from "react";
 import Photo from "./Photo";

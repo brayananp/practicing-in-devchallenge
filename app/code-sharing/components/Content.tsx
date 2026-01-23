@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { DEFAULT_CODE_INITIALIZATION } from "@/utils/codeStateInitial";
 import { createClient } from "@/utils/supebase/client";
 import Editor from "@monaco-editor/react";

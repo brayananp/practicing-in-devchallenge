@@ -1,5 +1,5 @@
 "use client";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import React, { SelectHTMLAttributes } from "react";
 import { useController } from "react-hook-form";
 

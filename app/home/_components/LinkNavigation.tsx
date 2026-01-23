@@ -1,10 +1,11 @@
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 
 type Props = {
   readonly isActive: boolean;
   readonly label: string;
   readonly href: string;
   readonly className?: string;
+  readonly onClick?: () => void;
 };
 
 export default function LinkNavigation({
@@ -12,10 +13,12 @@ export default function LinkNavigation({
   isActive,
   label,
   className,
+  onClick,
 }: Props) {
   return (
     <a
       href={href}
+      onClick={onClick}
       className={cn([
         "text-sm font-bold transition-colors duration-150 ease-in-out", // Base styles
         "text-gray-600 dark:text-gray-400", // Default colors for inactive links

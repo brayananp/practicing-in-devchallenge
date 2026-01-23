@@ -1,4 +1,4 @@
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { InputHTMLAttributes } from "react";
 import { useController } from "react-hook-form";
 

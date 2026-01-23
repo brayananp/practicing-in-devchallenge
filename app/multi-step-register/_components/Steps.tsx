@@ -1,5 +1,5 @@
 import { useFormStepContext } from "@/context/FormStepContext";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import DataSummary from "./DataSummary";
 import PersonalInfo from "./PersonalInfo";

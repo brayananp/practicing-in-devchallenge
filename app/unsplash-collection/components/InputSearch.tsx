@@ -1,4 +1,4 @@
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { ChangeEvent, FormEvent, useState } from "react";
 type Props = {
   readonly className?: string;

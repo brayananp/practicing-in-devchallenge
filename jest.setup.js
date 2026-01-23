@@ -39,9 +39,9 @@ jest.mock('next/router', () => ({
 }));
 
 // Mock for `cn` utility if it's simple. If complex, it might need a more specific mock.
-jest.mock('@/utils/cn', () => ({
+jest.mock('@/lib/utils', () => ({
   __esModule: true,
-  default: (inputs) => {
+  cn: (inputs) => {
     if (Array.isArray(inputs)) {
       return inputs
         .filter(Boolean)

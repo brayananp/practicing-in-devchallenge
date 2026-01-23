@@ -1,5 +1,5 @@
 import { Status } from "@/types/task";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import IconCloseRing from "./IconCloseRing";
 import IconDone from "./IconDone";
 import IconTimeAtack from "./IconTimeAtack";

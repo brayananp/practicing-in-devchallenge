@@ -1,7 +1,9 @@
 "use client";
-import Card from "@/components/ui/Card";
+import ProjectCard from "@/components/ui/project-card";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Globe } from "lucide-react";
 
 interface Project {
   id: string;
@@ -15,10 +17,15 @@ interface Project {
 
 export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
+
   const getData = async () => {
-    const res = await fetch("./data.json");
-    const data = await res.json();
-    setProjects(data.projects);
+    try {
+      const res = await fetch("./data.json");
+      const data = await res.json();
+      setProjects(data.projects);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    }
   };
 
   useEffect(() => {
@@ -26,44 +33,70 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="mt-10 max-w-screen-xl mx-auto  lg:px-20">
-      <h1 className="text-5xl text-center">
-        PROJECTS DE
-        <Link href="https://devchallenges.io/" target="_blank">
-          <strong> devchallenges</strong>
-        </Link>
-      </h1>
-      <p className="py-10 text-sm px-10">
-        ¡Entiendo! Aquí tienes una versión revisada: &quot;¡Estoy encantado de
-        compartir que estoy trabajando en una serie de desafíos de desarrollo
-        web de
-        <Link href="https://devchallenges.io/" target="_blank">
-          <strong> devchallenges.io </strong>
-        </Link>
-        y mostrando mis proyectos en mi página web! Desde proyectos de diseño
-        web responsivo hasta desafíos de JavaScript, frontend y full stack,
-        estos ejercicios están ampliando mis habilidades técnicas y prácticas en
-        el mundo del desarrollo web. Cada proyecto que completo no solo
-        fortalece mi conocimiento, sino que también mejora mi cartera
-        profesional. Agradezco enormemente a
-        <Link href="https://devchallenges.io/" target="_blank">
-          <strong> devchallenges.io </strong>
-        </Link>
-        por proporcionar esta plataforma emocionante que impulsa mi crecimiento
-        como desarrollador. ¡Visita mi página web para ver mis proyectos y únete
-        a mí en esta emocionante jornada de desarrollo web!&quot;
-      </p>
-      <div className="grid grid-cols-1 md:lg:grid-cols-2 lg:grid-cols-3  py-10 gap-10 px-10">
-        {projects.map((project) => (
-          <Card
-            key={project.id}
-            image={project.image_url}
-            title={project.name}
-            github_url={project.github_url}
-            slug={project.slug}
-          />
-        ))}
-      </div>
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden bg-muted/30">
+        <div className="container relative z-10">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+              Mis Proyectos de{" "}
+              <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                devchallenges.io
+              </span>
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed px-4">
+              Explora mi colección de soluciones a los desafíos de desarrollo web.
+              Desde interfaces responsivas hasta aplicaciones interactivas, cada proyecto
+              representa un paso más en mi camino como desarrollador.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 pt-4">
+              <Button asChild size="lg" className="gap-2">
+                <Link href="#proyectos">
+                  Ver Proyectos <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="gap-2">
+                <Link href="https://devchallenges.io/" target="_blank">
+                  <Globe className="h-4 w-4" /> devchallenges.io
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-72 h-72 bg-primary/50 rounded-full blur-3xl" />
+        </div>
+      </section>
+
+      {/* Projects Grid */}
+      <section id="proyectos" className="py-20 container">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-bold tracking-tight">Proyectos Recientes</h2>
+            <p className="text-muted-foreground">
+              Una lista detallada de los desafíos completados.
+            </p>
+          </div>
+          <div className="text-sm font-medium bg-muted px-4 py-2 rounded-full">
+            {projects.length} Proyectos Totales
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              image={project.image_url}
+              title={project.name}
+              github_url={project.github_url}
+              slug={project.slug}
+            />
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

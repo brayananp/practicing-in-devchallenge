@@ -1,4 +1,4 @@
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { LabelHTMLAttributes } from "react";
 
 interface Props extends LabelHTMLAttributes<HTMLLabelElement> {}

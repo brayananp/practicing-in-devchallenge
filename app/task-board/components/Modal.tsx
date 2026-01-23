@@ -1,5 +1,5 @@
 import { useTaskContext } from "@/context/TasksContext";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import TaskForm from "./TaskForm";
 import { useEffect, useRef } from "react";
 

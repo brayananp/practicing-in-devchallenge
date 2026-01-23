@@ -2,7 +2,7 @@
 import { Label } from "@/components/ui/Label";
 import { useTaskContext } from "@/context/TasksContext";
 import { Status } from "@/types/task";
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { useTaskForm } from "../hooks/useForm";
 import IconCloseRing from "./IconCloseRing";
 import IconDone from "./IconDone";

@@ -1,4 +1,4 @@
-import cn from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { HtmlHTMLAttributes } from "react";
 
 interface RadioCustomProps extends HtmlHTMLAttributes<HTMLInputElement> {
