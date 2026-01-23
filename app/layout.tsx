@@ -9,8 +9,7 @@ import {
   outfit,
   dmSans,
 } from "@/utils/typographies";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import MainLayout from "@/components/layout/MainLayout";
 
 export const metadata: Metadata = {
   title: "DevChallenges Portfolio | VJ",
@@ -28,11 +27,9 @@ export default function RootLayout({
       className={`${sora.variable} ${lato.variable} ${poppins.variable} ${beVietnamPro.variable} ${inter.variable} ${outfit.variable} ${dmSans.variable} scroll-smooth`}
     >
       <body className={`${poppins.className} min-h-screen flex flex-col`}>
-        <Header />
-        <div className="flex-grow">
+        <MainLayout>
           {children}
-        </div>
-        <Footer />
+        </MainLayout>
       </body>
     </html>
   );
