@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { Country } from "@/types/country";
+import { TableCell, TableRow } from "@/components/ui/table";
 
 interface CountryRowProps {
   readonly country: Country;
@@ -8,22 +9,27 @@ interface CountryRowProps {
 
 export default function CountryRow({ country }: CountryRowProps) {
   return (
-    <tr className="text-sm font-bold text-[#D2D5DA] hover:bg-black/5">
-      <td className="py-3">
-        <img
-          src={country.flags.png}
-          alt={`${country.name.common} flag`}
-          className="md:w-10  md:h-7 lg:w-[50px] lg:h-[38px]"
-        />
-      </td>
-      <td className="w-20 md:w-40 lg:w-48">
-        <Link href={`/country/${country.name.common}`}>
+    <TableRow className="text-sm font-bold text-[#D2D5DA] border-none hover:bg-white/5 transition-colors cursor-pointer group">
+      <TableCell className="py-4">
+        <Link href={`/country/${country.name.common}`} className="contents">
+          <img
+            src={country.flags.png}
+            alt={`${country.name.common} flag`}
+            className="rounded-sm w-12 h-8 object-cover"
+          />
+        </Link>
+      </TableCell>
+      <TableCell className="font-medium">
+        <Link
+          href={`/country/${country.name.common}`}
+          className="hover:underline"
+        >
           {country.name.common}
         </Link>
-      </td>
-      <td className="w-16 md:w-auto">{country.population.toLocaleString()}</td>
-      <td className="w-16 md:w-auto">{country.area.toLocaleString()}</td>
-      <td>{country.region}</td>
-    </tr>
+      </TableCell>
+      <TableCell>{country.population.toLocaleString()}</TableCell>
+      <TableCell>{country.area.toLocaleString()}</TableCell>
+      <TableCell className="text-center">{country.region}</TableCell>
+    </TableRow>
   );
 }

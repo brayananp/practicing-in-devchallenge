@@ -3,6 +3,7 @@ import { useCountries } from "@/context/CountriesContext";
 import CountryTable from "./CountryTable";
 import Hero from "./Hero";
 import ListFilters from "./ListFilters";
+import { Input } from "@/components/ui/shadcn-input";
 
 export default function Container() {
   const { handleQueryChange, countries } = useCountries();
@@ -33,8 +34,8 @@ export default function Container() {
                 ></path>
               </svg>
             </span>
-            <input
-              className="placeholder:text-[#6C727F] block bg-[#282B30] w-full  rounded-xl border-none py-4 px-4 ps-[40px] pr-3 shadow focus:outline-none focus:border-[#3662E3] focus:ring-[#3662E3] focus:ring-2 text-base sm:text-sm text-[#CDD5E0] font-medium"
+            <Input
+              className="placeholder:text-[#6C727F] block bg-[#282B30] w-full rounded-xl border-none h-[52px] ps-[40px] pr-3 shadow focus:outline-none focus:border-[#3662E3] focus:ring-[#3662E3] focus:ring-2 text-base sm:text-sm text-[#CDD5E0] font-medium"
               placeholder="Search by Name, Region, or Subregion"
               type="text"
               name="search"

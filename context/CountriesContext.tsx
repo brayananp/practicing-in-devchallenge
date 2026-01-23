@@ -15,9 +15,9 @@ import { useDebounce } from "use-debounce";
 type CountriesContextType = {
   countries: Country[];
   handleQueryChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleSortChange: (e: ChangeEvent<HTMLSelectElement>) => void;
-  handleCheckboxChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleCheckboxChangeRegions: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleSortChange: (value: string) => void;
+  handleCheckboxChange: (name: string, checked: boolean) => void;
+  handleCheckboxChangeRegions: (name: string, checked: boolean) => void;
   status: FilterStatus;
   regions: FilterRegion;
 };
@@ -63,9 +63,16 @@ export const ProviderCountries = ({ children }: { children: ReactNode }) => {
 
   const [debouncedQuery] = useDebounce(query, 500);
   const fetchDataCountries = async () => {
-    const res = await fetch("https://restcountries.com/v3.1/all");
-    const data = await res.json();
-    setCountries(data);
+    try {
+      const res = await fetch(
+        "https://restcountries.com/v3.1/all?fields=name,flags,population,area,region,subregion,independent,unMember"
+      );
+      if (!res.ok) throw new Error("Failed to fetch countries");
+      const data = await res.json();
+      setCountries(data);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+    }
   };
   useEffect(() => {
     fetchDataCountries();
@@ -74,24 +81,24 @@ export const ProviderCountries = ({ children }: { children: ReactNode }) => {
   const handleQueryChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   }, []);
-  const handleSortChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(e.target.value as "name" | "population" | "area");
+  const handleSortChange = useCallback((value: string) => {
+    setSortBy(value as "name" | "population" | "area");
   }, []);
 
   const handleCheckboxChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (name: string, checked: boolean) => {
       setStatus({
         ...status,
-        [event.target.name]: event.target.checked,
+        [name]: checked,
       });
     },
     [status]
   );
   const handleCheckboxChangeRegions = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (name: string, checked: boolean) => {
       setRegions({
         ...regions,
-        [event.target.name]: event.target.checked,
+        [name]: checked,
       });
     },
     [regions]
