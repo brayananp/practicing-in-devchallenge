@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { LegacyButton as Button } from "@/components/ui/LegacyButton";
 import { useFormStepContext } from "@/context/FormStepContext";
 import { useState } from "react";
 import Card from "./Card";

@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { LegacyButton as Button } from "@/components/ui/LegacyButton";
+import { LegacyInput as Input } from "@/components/ui/LegacyInput";
 import { Label } from "@/components/ui/Label";
 import { useFormStepContext } from "@/context/FormStepContext";
 import { SubmitHandler, useForm } from "react-hook-form";

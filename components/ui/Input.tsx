@@ -1,41 +1,25 @@
-import cn from "@/utils/cn";
-import { InputHTMLAttributes } from "react";
-import { useController } from "react-hook-form";
+import * as React from "react"
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  name: string;
-  control: any;
-  rules?: any;
-}
+import cn from "@/utils/cn"
 
-export const Input = ({ className, name, control, rules, ...rest }: Props) => {
-  const {
-    field: { ref, ...fields },
-    fieldState: { invalid, isTouched, isDirty, error },
-  } = useController({
-    name,
-    control,
-    rules,
-  });
-  return (
-    <div className="bg-transparent">
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
+    return (
       <input
-        className={cn([
-          "ps-3 py-6 rounded-xl text-base font-medium text-[#111729] w-full placeholder:text-[#CDD5E0]",
-          className,
-          {
-            "border-red-400 focus:border-none focus:ring-2 focus:ring-red-400":
-              invalid && isTouched,
-          },
-        ])}
-        {...rest}
-        {...fields}
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          className
+        )}
         ref={ref}
+        {...props}
       />
+    )
+  }
+)
+Input.displayName = "Input"
 
-      {isTouched && invalid && (
-        <div className="text-red-400">{error?.message}</div>
-      )}
-    </div>
-  );
-};
+export { Input }
