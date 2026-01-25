@@ -1,38 +1,47 @@
 import { useCountries } from "@/context/CountriesContext";
 import CountryRow from "./CountryRow";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function CountryTable() {
   const { countries } = useCountries();
 
   return (
-    <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8 relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full table-auto	">
-        <thead className="">
-          <tr className="text-[#6C727F] text-start text-[12px] font-medium border-b-2 border-[#282B30]">
-            <th scope="col" className="pb-4 text-start">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow className="border-b-2 border-[#282B30] hover:bg-transparent">
+            <TableHead className="text-[#6C727F] text-[12px] font-medium pb-4 h-auto">
               Flag
-            </th>
-            <th scope="col" className="pb-4 text-start">
+            </TableHead>
+            <TableHead className="text-[#6C727F] text-[12px] font-medium pb-4 h-auto">
               Name
-            </th>
-            <th scope="col" className="pb-4 text-start">
+            </TableHead>
+            <TableHead className="text-[#6C727F] text-[12px] font-medium pb-4 h-auto">
               Population
-            </th>
-            <th scope="col" className="pb-4 text-start">
+            </TableHead>
+            <TableHead className="text-[#6C727F] text-[12px] font-medium pb-4 h-auto">
               Area (Km<sup>2</sup>)
-            </th>
-            <th scope="col">Region</th>
-          </tr>
-        </thead>
-        <tbody className="">
+            </TableHead>
+            <TableHead className="text-[#6C727F] text-[12px] font-medium pb-4 h-auto text-center">
+              Region
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {countries.map((country, index) => (
             <CountryRow
               key={`${country.name.common}-${index}`}
               country={country}
             />
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 }

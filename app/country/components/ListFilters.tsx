@@ -1,5 +1,14 @@
 import { useCountries } from "@/context/CountriesContext";
 import cn from "@/utils/cn";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/shadcn-select";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function ListFilters() {
   const {
@@ -10,144 +19,90 @@ export default function ListFilters() {
     handleCheckboxChangeRegions,
   } = useCountries();
 
+  const regionList = [
+    { id: "americas", label: "Americas" },
+    { id: "antarctic", label: "Antarctic" },
+    { id: "africa", label: "Africa" },
+    { id: "asia", label: "Asia" },
+    { id: "europe", label: "Europe" },
+  ];
+
   return (
     <aside className="w-[325px] space-y-8">
       <div className="">
-        <p className="text-[#6C727F]">Sort by</p>
-        <select
-          name=""
-          id=""
-          className="form-select mt-2  text-white ring-2 ring-[#282B30] w-full rounded-lg border-none py-3 px-4 bg-[#1B1D1F]"
-          onChange={handleSortChange}
-        >
-          <option value="population">Population</option>
-          <option value="name">Name</option>
-          <option value="area">Área</option>
-        </select>
+        <p className="text-[#6C727F] text-sm font-semibold mb-2">Sort by</p>
+        <Select onValueChange={handleSortChange} defaultValue="population">
+          <SelectTrigger className="w-full bg-[#1B1D1F] border-[#282B30] text-white rounded-lg h-12">
+            <SelectValue placeholder="Sort by" />
+          </SelectTrigger>
+          <SelectContent className="bg-[#1B1D1F] border-[#282B30] text-white">
+            <SelectItem value="population">Population</SelectItem>
+            <SelectItem value="name">Name</SelectItem>
+            <SelectItem value="area">Area</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
+
       <div className="">
-        <p className="text-[#6C727F]">Region</p>
-        <div
-          className="*:px-3 *:py-1.5 *:rounded-full  mt-2 flex gap-3 flex-wrap *:cursor-pointer
-        "
-        >
-          <label
-            htmlFor="americas"
-            className={cn([
-              "text-[#6C727F]",
-              { "bg-[#282B30] text-[#D2D5DA]": regions.americas },
-            ])}
-          >
-            <input
-              type="checkbox"
-              name="americas"
-              id="americas"
-              className="hidden"
-              checked={regions.americas}
-              onChange={handleCheckboxChangeRegions}
-            />
-            <span>Americas</span>
-          </label>
-          <label
-            htmlFor="antarctic"
-            className={cn([
-              "text-[#6C727F]",
-              { "bg-[#282B30] text-[#D2D5DA]": regions.antarctic },
-            ])}
-          >
-            <input
-              type="checkbox"
-              name="antarctic"
-              id="antarctic"
-              className="hidden"
-              checked={regions.antarctic}
-              onChange={handleCheckboxChangeRegions}
-            />
-            <span>Antarctic</span>
-          </label>
-          <label
-            htmlFor="africa"
-            className={cn([
-              "text-[#6C727F]",
-              { "bg-[#282B30] text-[#D2D5DA]": regions.africa },
-            ])}
-          >
-            <input
-              type="checkbox"
-              name="africa"
-              id="africa"
-              className="hidden"
-              checked={regions.africa}
-              onChange={handleCheckboxChangeRegions}
-            />
-            <span>Africa</span>
-          </label>
-          <label
-            htmlFor="asia"
-            className={cn([
-              "text-[#6C727F]",
-              { "bg-[#282B30] text-[#D2D5DA]": regions.asia },
-            ])}
-          >
-            <input
-              type="checkbox"
-              name="asia"
-              id="asia"
-              className="hidden"
-              checked={regions.asia}
-              onChange={handleCheckboxChangeRegions}
-            />
-            <span>Asia</span>
-          </label>
-          <label
-            htmlFor="europe"
-            className={cn([
-              "text-[#6C727F]",
-              { "bg-[#282B30] text-[#D2D5DA]": regions.europe },
-            ])}
-          >
-            <input
-              type="checkbox"
-              name="europe"
-              id="europe"
-              className="hidden"
-              checked={regions.europe}
-              onChange={handleCheckboxChangeRegions}
-            />
-            <span>Europe</span>
-          </label>
+        <p className="text-[#6C727F] text-sm font-semibold mb-2">Region</p>
+        <div className="flex gap-3 flex-wrap">
+          {regionList.map((region) => (
+            <Badge
+              key={region.id}
+              variant="outline"
+              className={cn(
+                "cursor-pointer px-4 py-2 border-none text-[#6C727F] hover:text-[#D2D5DA] transition-colors",
+                regions[region.id as keyof typeof regions]
+                  ? "bg-[#282B30] text-[#D2D5DA]"
+                  : "bg-transparent"
+              )}
+              onClick={() =>
+                handleCheckboxChangeRegions(
+                  region.id,
+                  !regions[region.id as keyof typeof regions]
+                )
+              }
+            >
+              {region.label}
+            </Badge>
+          ))}
         </div>
       </div>
-      <div className="">
-        <p className="text-[#6C727F]">status</p>
-        <label
-          htmlFor="status-1"
-          className="flex items-center gap-x-2 mt-2 text-white"
-        >
-          <input
-            type="checkbox"
-            name="un"
-            id="status-1"
+
+      <div className="space-y-4">
+        <p className="text-[#6C727F] text-sm font-semibold">Status</p>
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="un"
             checked={status.un}
-            onChange={handleCheckboxChange}
-            className="size-6 rounded-md"
+            onCheckedChange={(checked) =>
+              handleCheckboxChange("un", checked === true)
+            }
+            className="border-[#6C727F] data-[state=checked]:bg-[#3662E3] data-[state=checked]:border-[#3662E3]"
           />
-          <span> Member of the United Nations</span>
-        </label>
-        <label
-          htmlFor="status-2"
-          className="flex items-center gap-x-2 mt-3 text-white"
-        >
-          <input
-            type="checkbox"
-            name="independent"
-            id="status-2"
-            className="size-6 rounded-md"
+          <label
+            htmlFor="un"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#D2D5DA] cursor-pointer"
+          >
+            Member of the United Nations
+          </label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="independent"
             checked={status.independent}
-            onChange={handleCheckboxChange}
+            onCheckedChange={(checked) =>
+              handleCheckboxChange("independent", checked === true)
+            }
+            className="border-[#6C727F] data-[state=checked]:bg-[#3662E3] data-[state=checked]:border-[#3662E3]"
           />
-          <span>Independent</span>
-        </label>
+          <label
+            htmlFor="independent"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#D2D5DA] cursor-pointer"
+          >
+            Independent
+          </label>
+        </div>
       </div>
     </aside>
   );
