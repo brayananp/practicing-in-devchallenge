@@ -21,8 +21,10 @@ export default function CountryRow({ country }: CountryRowProps) {
           {country.name.common}
         </Link>
       </td>
-      <td className="w-16 md:w-auto">{country.population.toLocaleString()}</td>
-      <td className="w-16 md:w-auto">{country.area.toLocaleString()}</td>
+      <td className="w-16 md:w-auto">
+        {(country.population ?? 0).toLocaleString()}
+      </td>
+      <td className="w-16 md:w-auto">{(country.area ?? 0).toLocaleString()}</td>
       <td>{country.region}</td>
     </tr>
   );

@@ -63,9 +63,19 @@ export const ProviderCountries = ({ children }: { children: ReactNode }) => {
 
   const [debouncedQuery] = useDebounce(query, 500);
   const fetchDataCountries = async () => {
-    const res = await fetch("https://restcountries.com/v3.1/all");
-    const data = await res.json();
-    setCountries(data);
+    try {
+      const res = await fetch(
+        "https://restcountries.com/v3.1/all?fields=name,population,area,region,flags,subregion,independent,unMember"
+      );
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setCountries(data);
+      } else {
+        console.error("Data is not an array:", data);
+      }
+    } catch (error) {
+      console.error("Failed to fetch countries:", error);
+    }
   };
   useEffect(() => {
     fetchDataCountries();
@@ -98,6 +108,7 @@ export const ProviderCountries = ({ children }: { children: ReactNode }) => {
   );
 
   const filteredCountries = useMemo(() => {
+    if (!Array.isArray(countries)) return [];
     let filtered = countries;
 
     if (debouncedQuery !== "") {
@@ -116,13 +127,13 @@ export const ProviderCountries = ({ children }: { children: ReactNode }) => {
       });
     }
 
-    filtered = filtered.sort((a: Country, b: Country) => {
+    filtered = [...filtered].sort((a: Country, b: Country) => {
       if (sortBy === "name") {
-        return a.name.common.localeCompare(b.name.common, "en");
+        return (a.name?.common ?? "").localeCompare(b.name?.common ?? "", "en");
       } else if (sortBy === "population") {
-        return b.population - a.population;
+        return (b.population ?? 0) - (a.population ?? 0);
       } else {
-        return b.area - a.area;
+        return (b.area ?? 0) - (a.area ?? 0);
       }
     });
 
