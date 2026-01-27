@@ -13,19 +13,25 @@ export default function NamePage({ params }: { params: { name: string } }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://restcountries.com/v3.1/name/${params.name}`
+        `https://restcountries.com/v3.1/name/${encodeURIComponent(params.name)}`
       );
       const data = await response.json();
-      const countryData = data[0];
+      const countryData = Array.isArray(data) ? data[0] : null;
       setCountry(countryData);
 
-      const codes = countryData.borders;
-      if (codes && codes.length > 0) {
-        const bordersResponse = await fetch(
-          `https://restcountries.com/v3.1/alpha?codes=${codes.join(",")}`
-        );
-        const bordersData = await bordersResponse.json();
-        setBorders(bordersData);
+      if (countryData) {
+        const codes = countryData.borders;
+        if (codes && codes.length > 0) {
+          const bordersResponse = await fetch(
+            `https://restcountries.com/v3.1/alpha?codes=${codes.join(
+              ","
+            )}&fields=name,flags`
+          );
+          const bordersData = await bordersResponse.json();
+          setBorders(Array.isArray(bordersData) ? bordersData : []);
+        } else {
+          setBorders([]);
+        }
       } else {
         setBorders([]);
       }
@@ -63,14 +69,14 @@ export default function NamePage({ params }: { params: { name: string } }) {
             <div className="bg-[#6C727F] py-2.5 px-4 rounded-lg text-[#D2D5DA] space-x-3">
               <span>Population</span>
               <span>|</span>
-              <span>{country?.population.toLocaleString()}</span>
+              <span>{(country?.population ?? 0).toLocaleString()}</span>
             </div>
             <div className="bg-[#6C727F] py-2.5 px-4 rounded-lg text-[#D2D5DA] space-x-3">
               <span>
                 Area (km<sup>2</sup>)
               </span>
               <span>|</span>
-              <span>{country?.area.toLocaleString()}</span>
+              <span>{(country?.area ?? 0).toLocaleString()}</span>
             </div>
           </div>
         </div>
