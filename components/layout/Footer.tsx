@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Mail, Code2, ExternalLink } from "lucide-react";
+import { Github, Twitter, Linkedin, Code2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   return (
     <footer className="border-t bg-muted/30">
-      <div className="container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2 group">
               <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
@@ -45,9 +45,24 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="https://devchallenges.io/" target="_blank" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                <a
+                  href="https://brayan-nunez.pages.dev/es/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+                >
+                  Contacto <ExternalLink className="h-3 w-3" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://devchallenges.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+                >
                   DevChallenges <ExternalLink className="h-3 w-3" />
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -71,24 +86,6 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-sm uppercase tracking-wider mb-6">Newsletter</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Suscríbete para recibir actualizaciones sobre nuevos proyectos.
-            </p>
-            <div className="flex gap-2">
-              <div className="relative flex-grow">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <input
-                  type="email"
-                  placeholder="Tu email"
-                  className="w-full pl-9 pr-3 py-2 bg-background border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                />
-              </div>
-              <Button size="sm">Unirse</Button>
-            </div>
           </div>
         </div>
 

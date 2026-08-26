@@ -1,42 +1,48 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Globe, Code2 } from "lucide-react";
+import { Github, Globe, Code2, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="bg-primary text-primary-foreground p-1.5 rounded-lg group-hover:rotate-12 transition-transform duration-300">
-              <Code2 className="h-6 w-6" />
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md transition-all">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="p-1.5 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+              <Code2 className="h-5 w-5" />
             </div>
-            <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            <span className="font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
               DevPortfolio
             </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link
+              href="/"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
               Inicio
             </Link>
-            <Link href="#proyectos" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link
+              href="#proyectos"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
               Proyectos
             </Link>
           </nav>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 border-r pr-2 mr-2">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1">
             <Link
               href="https://github.com/vj-vj"
               target="_blank"
               rel="noreferrer"
             >
-              <Button variant="ghost" size="icon" className="h-9 w-9">
-                <Github className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
+                <Github className="h-4 w-4" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
@@ -45,14 +51,24 @@ export default function Header() {
               target="_blank"
               rel="noreferrer"
             >
-              <Button variant="ghost" size="icon" className="h-9 w-9">
-                <Globe className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
+                <Globe className="h-4 w-4" />
                 <span className="sr-only">DevChallenges</span>
               </Button>
             </Link>
           </div>
-          <Button size="sm" className="hidden sm:flex">
-            Contáctame
+
+          <div className="h-4 w-[1px] bg-border" />
+
+          <Button asChild size="sm" className="rounded-full px-4 text-xs font-semibold gap-1">
+            <a
+              href="https://brayan-nunez.pages.dev/es/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contáctame
+              <ArrowUpRight className="h-3 w-3" />
+            </a>
           </Button>
         </div>
       </div>
