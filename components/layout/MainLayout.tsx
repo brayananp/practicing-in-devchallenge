@@ -10,13 +10,13 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const showHeaderFooter = pathname === "/" || pathname === "/privacidad" || pathname === "/terminos";
 
   return (
     <>
-      {isHome && <Header />}
+      {showHeaderFooter && <Header />}
       <main className="flex-grow">{children}</main>
-      {isHome && <Footer />}
+      {showHeaderFooter && <Footer />}
     </>
   );
 }
