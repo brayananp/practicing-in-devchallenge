@@ -12,7 +12,7 @@ import {
 import MainLayout from "@/components/layout/MainLayout";
 
 export const metadata: Metadata = {
-  title: "DevChallenges Portfolio | VJ",
+  title: "DevChallenges Portfolio | BANP",
   description: "Una colección de desafíos de desarrollo web de devchallenges.io",
 };
 

@@ -37,7 +37,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
             <Link
-              href="https://github.com/vj-vj"
+              href="https://github.com/brayananp"
               target="_blank"
               rel="noreferrer"
             >

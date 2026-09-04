@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Code2, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Code2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
@@ -19,14 +19,25 @@ export default function Footer() {
               Enfocado en crear experiencias web excepcionales y código limpio.
             </p>
             <div className="flex space-x-3">
-              <Button variant="outline" size="icon" className="h-8 w-8 rounded-full">
-                <Github className="h-4 w-4" />
+              <Button variant="outline" size="icon" className="h-8 w-8 rounded-full" asChild>
+                <a
+                  href="https://github.com/brayananp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <Github className="h-4 w-4" />
+                </a>
               </Button>
-              <Button variant="outline" size="icon" className="h-8 w-8 rounded-full">
-                <Twitter className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="icon" className="h-8 w-8 rounded-full">
-                <Linkedin className="h-4 w-4" />
+              <Button variant="outline" size="icon" className="h-8 w-8 rounded-full" asChild>
+                <a
+                  href="https://www.linkedin.com/in/brayan-alexis-nu%C3%B1ez-pesantes-a112091b8/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
               </Button>
             </div>
           </div>
@@ -90,10 +101,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} DevPortfolio. Creado con ❤️ por VJ.</p>
+          <p>© {new Date().getFullYear()} DevPortfolio. Creado con ❤️ por BANP.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-foreground transition-colors">Privacidad</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">Términos</Link>
+            <Link href="/privacidad" className="hover:text-foreground transition-colors">Privacidad</Link>
+            <Link href="/terminos" className="hover:text-foreground transition-colors">Términos</Link>
           </div>
         </div>
       </div>
